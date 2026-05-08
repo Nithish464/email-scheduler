@@ -339,3 +339,15 @@ When bulk scheduling respects `hourlyLimit`, the service pre-calculates scheduli
 - **Rate limiting is per-sender** (by user ID) — not per SMTP provider account
 - **The worker and server run as separate processes** — in production, you'd deploy them independently and scale workers horizontally
 - **Polling** (10s interval) is used instead of WebSockets for simplicity — upgrade to Socket.io for real-time updates
+
+# MailQueue — Full-Stack Email Job Scheduler
+
+> Production-grade email scheduling system built with BullMQ + Redis + PostgreSQL + Next.js
+
+## 🚀 Live Demo
+
+**Hosted URL:** https://email-scheduler-production-ccb0.up.railway.app
+
+**GitHub Repo:** https://github.com/Nithish464/email-scheduler
+
+---
