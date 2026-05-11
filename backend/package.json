@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
-    "build": "tsc",
-    "start": "node dist/server.js",
+    "build": "npx prisma generate && tsc",
+    "start": "npx prisma migrate deploy && node dist/server.js",
     "worker": "ts-node-dev --respawn --transpile-only src/workers/emailWorker.ts",
     "migrate": "prisma migrate dev",
     "generate": "prisma generate"
