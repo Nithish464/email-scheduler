@@ -16,6 +16,12 @@ export async function getTransporter(): Promise<nodemailer.Transporter> {
         user: process.env.ETHEREAL_USER,
         pass: process.env.ETHEREAL_PASS,
       },
+      tls: {
+        rejectUnauthorized: false,
+      },
+      connectionTimeout: 30000,
+      greetingTimeout: 30000,
+      socketTimeout: 30000,
     });
     console.log('✅ Using configured Ethereal credentials');
   } else {
@@ -28,6 +34,12 @@ export async function getTransporter(): Promise<nodemailer.Transporter> {
         user: testAccount.user,
         pass: testAccount.pass,
       },
+      tls: {
+        rejectUnauthorized: false,
+      },
+      connectionTimeout: 30000,
+      greetingTimeout: 30000,
+      socketTimeout: 30000,
     });
     console.log('✅ Auto-created Ethereal account:', testAccount.user);
     console.log('   Add to .env: ETHEREAL_USER=' + testAccount.user);
