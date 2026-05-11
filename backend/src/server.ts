@@ -15,16 +15,22 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Redis client for sessions
-const redisClient = process.env.REDIS_URL
-  ? createClient({ url: process.env.REDIS_URL })
-  : createClient({
-      socket: {
-        host: process.env.REDIS_HOST || 'localhost',
-        port: parseInt(process.env.REDIS_PORT || '6379'),
-      },
-      password: process.env.REDIS_PASSWORD || undefined,
-    });
+let redisClient: any;
 
+if (process.env.REDIS_URL) {
+  redisClient = createClient({ url: process.env.REDIS_URL });
+} else {
+  redisClient = createClient({
+    socket: {
+      host: process.env.REDIS_HOST || 'localhost',
+      port: parseInt(process.env.REDIS_PORT || '6379'),
+    },
+    password: process.env.REDIS_PASSWORD || undefined,
+  });
+}
+
+redisClient.on('connect', () => console.log('✅ Session Redis connected'));
+redisClient.on('error', (err: any) => console.error('❌ Session Redis error:', err));
 redisClient.connect().catch(console.error);
 
 // CORS
